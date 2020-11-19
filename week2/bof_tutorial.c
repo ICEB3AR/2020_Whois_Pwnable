@@ -88,7 +88,7 @@ void printStack(char *stack){
     printf("\t  <-- canary\n");
     printLine(STACK_SIZE+0x8);
     print8(stack + STACK_SIZE + 0x8, 0);
-    printf("\t  <-- sfp\n");
+    printf("\t  <-- rbp\n");
     printLine(STACK_SIZE+0x10);
     print8(stack + STACK_SIZE + 0x10, 0);
     printf("\t  <-- return address\n");
@@ -103,13 +103,15 @@ void getHexInput(char *stack){
     to_byte_array(tmp, size, stack);
 }
 int getInput(char *stack){
-    printf("\n\n[*] If you want input hex value, input \"hex\"\n[*] If you want return, input \"ret\"\nWrite something to buf\n>>");
+    printf("\n\n[*] If you want input hex value, input \"hex\"\n[*] If you want return, input \"ret\"\n[*] If you want print stack, input \"print\"\nWrite something to buf\n>>");
     fflush(stdout);
     char tmp[STACK_SIZE*2] = {0,};
     int size = read(0, tmp, STACK_SIZE*2);
     if(!strncmp(tmp, "ret",3)) return 0;
     else if(!strncmp(tmp, "hex", 3)) {
         getHexInput(stack);
+    } else if(!strncmp(tmp, "print", 5)) {
+        printf("Contents: %s\n", stack);
     } else{
         memcpy(stack, tmp, size);
         printf("\n\n[*] Input %d byte\n", size);
