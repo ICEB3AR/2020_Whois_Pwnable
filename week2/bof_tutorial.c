@@ -21,6 +21,7 @@ void welcome(){
     "|____/ \\____/|_|\n");
     printf("\n[Buffer Overflow Tutorial]\n");
     printf("\n- Made by exd0tpy -\n\n");
+    printf("\nshellcode (23 bytes): 31f648bb2f62696e2f2f73685653545f6a3b5831d20f05\n\n");
 }
 void printAscii(char *dest){
     for(int i=0;i<8;i++){

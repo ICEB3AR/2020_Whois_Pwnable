@@ -5,7 +5,6 @@ char name[0x20];
 
 int main(){
 
-  char 
   scanf("%s", name);
   
 }
